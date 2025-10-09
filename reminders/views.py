@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView
 from .models import Task
-from .forms import LoginForm,SignUpForm
+#from .forms import LoginForm,SignUpForm
 
 
 def index(request,id):
@@ -20,9 +20,9 @@ def tasks(request):
     return render(request,'reminders/task_list.html',context)
 
 def login(request):
-    form = LoginForm
-    return render(request,'registration/login.html',{'form':form})
+    #form = LoginForm
+    return render(request,'registration/login.html',{})#{'form':form})
 
 def sign_up(request):
-    form=SignUpForm
+   # form=SignUpForm
     return render(request,'registration/sign_in.html')
