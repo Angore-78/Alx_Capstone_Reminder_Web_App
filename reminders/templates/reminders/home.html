@@ -1,0 +1,15 @@
+{%extends 'reminders/base.html'%}
+    {%block title%} HomePage
+    {%endblock title%}
+    {% block content %}
+        {% if user.is_authenticated %}
+        <p1>Welcome {{user.username}}</p1>
+        {% else %}
+        You haven't logged in\n
+        Please login first
+        <a href="{% url 'login' %}"> Login</a>
+        Or if you are new, consider signing up 😁
+        \n Here\n
+        <a href="{% url 'sign_up' %}">Sign Up</a>
+        {% endif %}
+        {% endblock content %}
