@@ -1,0 +1,11 @@
+{% extends 'reminders/base.html' %}
+{% block title %} Sign Up Page {% endblock title %}
+
+{% block content %}
+    <h1>Welcome New User</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit"> Sign Up</button>
+    </form>
+{% endblock content %}
