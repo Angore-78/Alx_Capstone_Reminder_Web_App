@@ -14,14 +14,19 @@ def home(request):
 
 
 def tasks(request):
-    task = Task.objects.all()
+    task = Task.objects.get(task=Task.to_do)
     context = {'task':task}
-    #form = 
     return render(request,'reminders/task_list.html',context)
 
 def login(request):
-    form = LoginForm
-    return render(request,'registration/login.html',{'form':form})
+    if request.method=='POST':
+        form = LoginForm(request.Post)
+        if form.is_valid():
+            n=form.cleaned_data['username']
+    
+    else:
+     form = LoginForm
+     return render(request,'registration/login.html',{'form':form})
 
 def sign_up(request):
     form=SignUpForm

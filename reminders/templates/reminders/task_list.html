@@ -1,0 +1,20 @@
+{% extends 'reminders/base.html' %}
+
+{% block title %}Tasks schedualed{% endblock %}
+
+{% block content %}
+    <h1>Tasks</h1>
+        {% if user.is_authenticated %}
+        Here are your tasks {{ user.username }}
+        <ul> {% for task in task.to_do %}
+
+            <li>{{task.to_do}}>>{{task.details}}</li>
+
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p1>Kindly login to access your tasks</p1>
+        <a href="{% url 'login' %}"> Login </a>
+        {% endif %}
+    
+{% endblock content %}
