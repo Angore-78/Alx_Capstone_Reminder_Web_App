@@ -7,6 +7,8 @@
         {% csrf_token %}
         {{ form }}
         <button type="submit"> Sign Up</button>
+        {% if user.is_authenticated%}
         <p>Login<a href="{% url 'login' %}">Here</a></p>
+        {% endif %}
     </form>
 {% endblock content %}

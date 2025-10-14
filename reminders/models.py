@@ -35,7 +35,7 @@ class Author(AbstractBaseUser):
     is_superuser=models.BooleanField(default=False)
 
     USERNAME='username'
-    REQUIRED_FIELDS=['email']
+    REQUIRED_FIELDS=['email','username']
 
     objects=UserManager()
 
