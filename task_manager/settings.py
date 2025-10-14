@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #my istalled apps
-    'reminders.apps.RemindersConfig'
+    'reminders.apps.RemindersConfig',
+    'crispy_forms',
 
 ]
 
@@ -126,3 +127,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL ='home'
 LOGOUT_REDIRECT_URL='home'
+
+CRISPY_TEMPLATE_PACK='bootstrap4'

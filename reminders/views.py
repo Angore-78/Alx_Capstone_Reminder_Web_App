@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views.generic import ListView,DetailView
 from .models import Task
@@ -26,7 +26,7 @@ def login(request):
         form = LoginForm(request.Post)
         if form.is_valid():
             n=form.cleaned_data['username']
-            
+            return n
     else:
      form = LoginForm
      return render(request,'registration/login.html',{'form':form})
@@ -35,7 +35,8 @@ def sign_up(request):
     if request.method=='POST':
         form=UserCreationForm(request.POST)
         if form.is_valid():
-            return form.cleaned_data['username']
+            form.save()
+            return redirect("/home")
     else:
         form=UserCreationForm
     return render(request,'registration/sign_up.html',{'form':form})
