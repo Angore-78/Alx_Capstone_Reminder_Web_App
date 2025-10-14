@@ -5,7 +5,7 @@ from  . import views
 app_name = 'reminders'
 
 urlpatterns=[
-    path('<int:id>',views.index,name='base'),
+    path('<int:id>/',views.index,name='index'),
     path('',views.home, name='home'),
     path('tasks/',views.tasks,name='task_list'),
     path('login/',views.login,name='login'),

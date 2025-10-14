@@ -34,7 +34,7 @@ class Author(AbstractBaseUser):
     is_active=models.BooleanField(default=True)
     is_superuser=models.BooleanField(default=False)
 
-    USERNAME='email'
+    USERNAME='username'
     REQUIRED_FIELDS=['email']
 
     objects=UserManager()

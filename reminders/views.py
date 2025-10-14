@@ -1,12 +1,15 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.views.generic import ListView,DetailView
 from .models import Task
+from django.contrib.auth.forms import UserCreationForm
 from .forms import LoginForm,SignUpForm
 
 
 def index(request,id):
     task = Task.objects.get(id = id)
-    return render(request,'reminders/base.html',{})
+   # detail=Task.objects.get(details=details)
+    return HttpResponse("<h1>%s</h1><br></br><p1>%s</p1>"%(task.id))
 
 
 def home(request):
@@ -23,11 +26,16 @@ def login(request):
         form = LoginForm(request.Post)
         if form.is_valid():
             n=form.cleaned_data['username']
-    
+            
     else:
      form = LoginForm
      return render(request,'registration/login.html',{'form':form})
 
 def sign_up(request):
-    form=SignUpForm
-    return render(request,'registration/sign_in.html')
+    if request.method=='POST':
+        form=UserCreationForm(request.POST)
+        if form.is_valid():
+            return form.cleaned_data['username']
+    else:
+        form=UserCreationForm
+    return render(request,'registration/sign_up.html',{'form':form})
