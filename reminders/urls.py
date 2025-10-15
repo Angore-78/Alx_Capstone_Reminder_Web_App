@@ -5,10 +5,9 @@ from  . import views
 app_name = 'reminders'
 
 urlpatterns=[
-    path('<int:id>/',views.index,name='index'),
+    path('task list/',views.index,name='tasks'),
     path('',views.home, name='home'),
-    path('tasks/',views.tasks,name='task_list'),
+    path('to_do/',views.tasks,name='to_do'),
     path('login/',views.login,name='login'),
-    path('sign_up/',views.sign_up,name='sign_up'),
-    
+    path('sign_up/',views.sign_up,name='sign_up'),    
 ]

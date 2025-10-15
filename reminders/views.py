@@ -1,15 +1,13 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from .models import Task
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import LoginForm,SignUpForm
+from .forms import LoginForm,SignUpForm,TaskForm
 
 
-def index(request,id):
-    task = Task.objects.get(id = id)
-   # detail=Task.objects.get(details=details)
-    return HttpResponse("<h1>%s</h1><br></br><p1>%s</p1>"%(task.id))
+def index(request):
+    return render(request,'reminders/task_list.html',{})
 
 
 def home(request):
@@ -17,16 +15,24 @@ def home(request):
 
 
 def tasks(request):
-    task = Task.objects.get(task=Task.to_do)
+    if request.method=='POST':
+        form =TaskForm(request.POST)
+        if form.is_valid():
+            clean=form.cleaned_data['to_do']
+            task=Task(name=clean)
+            task.save()
+        return HttpResponseRedirect("/%i" %task.id)
+    else:
+        task = Task.objects.all()
     context = {'task':task}
-    return render(request,'reminders/task_list.html',context)
+    return render(request,'reminders/to_do.html',context)
 
 def login(request):
     if request.method=='POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             n=form.cleaned_data['username']
-            return n
+        return redirect(" ")
     else:
      form = LoginForm
      return render(request,'registration/login.html',{'form':form})

@@ -23,8 +23,9 @@ class LoginForm(forms.Form):
 
         
 class TaskForm(forms.Form):
-    to_do=forms.Textarea()
+    to_do=forms.CharField(label='Tasks',max_length=30)
+    details=forms.CharField(label='Task Description',max_length=250)
+    duration=forms.IntegerField(label='Time before deadline')
     
-    class Meta:
-        model = Task
-        fields = ['to_do','details','author']
+
+    
