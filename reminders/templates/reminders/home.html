@@ -4,11 +4,20 @@
     {% block content %}
         {% if user.is_authenticated %}
         <p1>Welcome {{user.username}}</p1>
+        <br></br>
+        <p>My Tasks 
+            <a href="tasks/">To Do List</a>
+        </p>
+        <br></br><p>Add new<a href="to_do/">here</a></p>
+        <br></br>
+        <p>Or <br></br> You can
+        <a href="{% url 'logout' %}">Logout</p></a></p>
+        
+
         {% else %}
         You haven't logged in\n
         Please login first
         <a href="{% url 'login' %}"> Login</a>
-        <br></br>
-        <a href="{% url 'logout' %}">Logout</a>
+        
         {% endif %}
         {% endblock content %}

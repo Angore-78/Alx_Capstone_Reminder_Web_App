@@ -1,0 +1,12 @@
+{% extends 'reminders/base.html %}
+
+{% block title %}Add New Tasks
+{% endblock title %}
+{% block content %}
+<h1>New Tasks</h1>
+<form method="post" action="/to_do/">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" name="save">New Task</button>
+</form>
+{% endblock content %}
