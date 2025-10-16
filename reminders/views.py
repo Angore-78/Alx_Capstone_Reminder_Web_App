@@ -3,7 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from .models import Task
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import LoginForm,SignUpForm,TaskForm
+from .forms import LoginForm,SignUpForm,TaskForm,TaskCreate
 
 
 def index(request):
@@ -13,6 +13,19 @@ def index(request):
 def home(request):
     return render(request,'reminders/home.html',{})
 
+def create(request):
+    if request.method=='POST':
+        form=TaskCreate(request.POST)
+        if form.is_valid():
+            name=form.cleaned_data['task']
+            output=Task(name=name)
+            output.save()
+        return HttpResponseRedirect("/%i" %output)
+    else:
+        form=TaskCreate()
+    return render(request,'reminders/create.html',{'form':form})
+
+
 
 def tasks(request):
     if request.method=='POST':
@@ -21,11 +34,11 @@ def tasks(request):
             clean=form.cleaned_data['to_do']
             task=Task(name=clean)
             task.save()
-        return HttpResponseRedirect("/%i" %task.id)
+            return HttpResponseRedirect("/%i" %task.id)
     else:
-        task = Task.objects.all()
-    context = {'task':task}
-    return render(request,'reminders/to_do.html',context)
+        task = TaskForm()
+    return render(request,'reminders/create.html',{'task':task})
+
 
 def login(request):
     if request.method=='POST':
@@ -37,12 +50,14 @@ def login(request):
      form = LoginForm
      return render(request,'registration/login.html',{'form':form})
 
+
+
 def sign_up(request):
     if request.method=='POST':
         form=SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("")
+            
     else:
         form=SignUpForm
     return render(request,'registration/sign_up.html',{'form':form})
