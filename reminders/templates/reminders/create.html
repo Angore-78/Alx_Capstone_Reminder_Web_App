@@ -1,0 +1,15 @@
+{% extends "reminders/base.html" %}
+
+{% block tilte %}
+Add task
+{% endblock %}
+
+{% block content %}
+<p>Add tasks here</p>
+<forms method="post" action="/create/">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit"> Add </button>
+
+</forms>
+{% endblock %}

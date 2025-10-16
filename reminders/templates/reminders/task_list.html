@@ -5,8 +5,9 @@
 {% block content %}
     <h1>Tasks</h1>
         {% if user.is_authenticated %}
+
         Here are your tasks {{ user.username }}
-        <form method="post">{% csrf_token %}
+        {{ Task.objects.all }}
         <ul> {% for task in task.to_do %}
 
             <li>{{task.to_do}}>>{{task.details}}</li>
