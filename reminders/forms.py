@@ -1,6 +1,6 @@
 from django import forms
 from datetime import timedelta
-from .models import Task,Priority
+from .models import Task,Priority,Author
 from django.contrib.auth.models import User 
 from django.contrib.auth.forms import UserCreationForm
 
@@ -35,7 +35,7 @@ class SignUpForm(UserCreationForm):
     email=forms.EmailField()
 
     class Meta:
-        model=User
+        model=Author
         fields=['username','email','password1','password2']
 
 
@@ -53,6 +53,13 @@ class TaskForm(forms.Form):
     to_do=forms.CharField(label='Tasks',max_length=30)
     details=forms.CharField(label='Task Description',max_length=250)
     duration=forms.IntegerField(label='Time before deadline')
+
+    class Meta:
+        model=Task
+        fields=['to_do','details']
+    
+    def __str__(self):
+        return self.to_do +'>'+ self.details
     
 
     

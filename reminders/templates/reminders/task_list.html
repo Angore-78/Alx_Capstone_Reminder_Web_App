@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Tasks</h1>
-        {% if user.is_authenticated %}
+        
         {% if tasks.objects.all %}
         Here are your tasks {{ user.username }}
         <ul>
@@ -19,19 +19,9 @@
         Opps, No tasks set 😑😑
         <br></br>
         <p>Set new tasks?
-<<<<<<< HEAD
-            <a href="/create">create</a>
-=======
+
             <a href="/create/ ">create</a>
->>>>>>> d61fb7de145ac2098bab5cf83bb5fb03d0c0ccc8
         </p>
            {% endif %}
-        {% else %}
-
-        <p1>Kindly login to access your tasks</p1>
-
-        <a href="{% url 'login' %}"> Login </a>
-
-        {% endif %}
-    
+        
 {% endblock content %}

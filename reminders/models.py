@@ -28,14 +28,14 @@ class UserManager(BaseUserManager):
         
         
 class Author(AbstractBaseUser):
-    username=models.CharField(max_length=100)
+    username=models.CharField(max_length=100,unique=True)
     email=models.EmailField(max_length=100,unique=True)
     is_staff=models.BooleanField(default=False)
     is_active=models.BooleanField(default=True)
     is_superuser=models.BooleanField(default=False)
 
-    USERNAME='username'
-    REQUIRED_FIELDS=['email','username']
+    USERNAME_FIELD='email'
+    REQUIRED_FIELDS=['username']
 
     objects=UserManager()
 
