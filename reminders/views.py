@@ -7,11 +7,14 @@ from .forms import LoginForm,SignUpForm,TaskForm,TaskCreate
 
 
 def index(request):
-    return render(request,'reminders/task_list.html',{})
+    task=Task.objects.all()
+    return render(request,'reminders/task_list.html',{'tasks':task})
 
 
 def home(request):
     return render(request,'reminders/home.html',{})
+
+
 
 def create(request):
     if request.method=='POST':
@@ -20,7 +23,7 @@ def create(request):
             name=form.cleaned_data['task']
             output=Task(name=name)
             output.save()
-        return HttpResponseRedirect("/%i" %output)
+    
     else:
         form=TaskCreate()
     return render(request,'reminders/create.html',{'form':form})
