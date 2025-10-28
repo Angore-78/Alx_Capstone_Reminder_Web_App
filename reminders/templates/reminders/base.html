@@ -1,14 +1,55 @@
 <html>
     <head>
+        <style type="text/css">
+            .sidenav{
+                height:100%;
+                width:150px;
+                position:fixed;
+                z-index:1;
+                top:0;
+                left:0;
+                background-color: cornflowerblue;
+                overflow-x: hidden;
+                padding-top: 20px;
+            }
+            .sidenav a {
+                padding:6px 8px 6px 16px;
+                text-decoration: none;
+                font-size:20px;
+                color: black;
+                display: block;
+            }
+
+            .sidenav a:hover{
+                color: #f1f1f1;
+            }
+
+            .main{
+                margin-left: 160px;
+                padding: 0px 10px;
+            }
+
+        </style>
         <title>
-            Task Reminders
-        </title>
-    </head>
-    <body>
-        <header><h1>{% block title %}
+            <header><h1>{% block title %}
             {% endblock %}</h1>
             </header>
-            <div>
+        </title>
+
+    </head>
+
+
+    <body>
+        <div class="sidenav">
+            <a href="/">Home</a>
+            <a href="/create">Add Task</a>
+            <a href="/to_do">Check Tasks</a>
+            
+        </div>
+
+        
+
+            <div id="content", name="content", class="main">
                 {%block content%}
                 {%endblock content%}
             </div>
